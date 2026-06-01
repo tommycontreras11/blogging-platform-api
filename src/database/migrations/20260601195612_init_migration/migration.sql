@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "Category" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
+    "uuid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -11,9 +12,10 @@ CREATE TABLE "Category" (
 
 -- CreateTable
 CREATE TABLE "Post" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
+    "uuid" TEXT NOT NULL,
     "content" TEXT NOT NULL,
-    "categoryId" TEXT NOT NULL,
+    "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "deletedAt" TIMESTAMP(3),
@@ -23,7 +25,8 @@ CREATE TABLE "Post" (
 
 -- CreateTable
 CREATE TABLE "Tag" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
+    "uuid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -34,8 +37,8 @@ CREATE TABLE "Tag" (
 
 -- CreateTable
 CREATE TABLE "_PostToTag" (
-    "A" TEXT NOT NULL,
-    "B" TEXT NOT NULL,
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL,
 
     CONSTRAINT "_PostToTag_AB_pkey" PRIMARY KEY ("A","B")
 );
