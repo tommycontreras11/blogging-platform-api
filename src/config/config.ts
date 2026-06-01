@@ -1,17 +1,13 @@
 import dotenv from "dotenv"
+import { z } from "zod"
 
 dotenv.config({
     quiet: true
 })
 
-interface IConfig {
-    port: number
-    nodeEnv: string
-}
+const envSchema = z.object({
+    PORT: z.coerce.number(),
+    NODE_ENV: z.enum(["dev", "prod"]).default("dev")
+})
 
-const config: IConfig = {
-    port: Number(process.env.PORT),
-    nodeEnv: process.env.NODE_ENV || "development"
-}
-
-export default config
+export const config = envSchema.parse(process.env)
