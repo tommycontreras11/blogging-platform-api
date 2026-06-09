@@ -5,8 +5,6 @@ export const getAllTagsService = async () => {
   const tags = await prisma.tag.findMany({
     omit: {
       id: true,
-      createdAt: true,
-      updatedAt: true,
       deletedAt: true,
     },
   });
