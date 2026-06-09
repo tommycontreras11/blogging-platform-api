@@ -6,10 +6,15 @@ export const validate =
   (schema: z.ZodType) => (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
 
+    const errors = result.error?.flatten()
+
     if (!result.success) {
       return res.status(StatusCode.UNPROCESSABLE_ENTITY).json({
         message: 'Validation failed',
-        errors: result.error.flatten().fieldErrors,
+        errors: {
+          form: errors?.formErrors,
+          fields: errors?.fieldErrors
+        },
       });
     }
 
