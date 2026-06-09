@@ -1,12 +1,9 @@
 import { CreateTagDTO } from '../../dtos/tag/create-tag.dto';
-import { TagResponse } from '../../dtos/tag/tag-response.dto';
 import { StatusCode } from '../../helpers/status-code';
 import { prisma } from './../../database/index';
 import { getTagByName } from './getOne.service';
 
-export const createTagService = async ({
-  name,
-}: CreateTagDTO): Promise<TagResponse> => {
+export const createTagService = async ({ name }: CreateTagDTO) => {
   const tag = await getTagByName(name);
 
   if (tag)

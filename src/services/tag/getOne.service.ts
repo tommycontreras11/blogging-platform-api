@@ -3,13 +3,7 @@ import { StatusCode } from '../../helpers/status-code';
 
 export const getOneTagService = async (uuid: string) => {
   const tag = await prisma.tag.findFirst({
-    where: { uuid },
-    omit: {
-      id: true,
-      createdAt: true,
-      updatedAt: true,
-      deletedAt: true,
-    },
+    where: { uuid }
   });
 
   if (!tag)
