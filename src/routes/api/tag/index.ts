@@ -1,12 +1,14 @@
 import { Router } from "express"
-import { getAllTagsController, getOneTagController, createTagController } from "../../../controllers/tag/index"
+import { getAllTagsController, getOneTagController, createTagController, updateTagController } from "../../../controllers/tag/index"
 import { validate } from "../../../middlewares/validate-dto.middleware";
 import { CreateTagSchema } from "../../../dtos/tag/create-tag.dto";
+import { UpdateTagSchema } from "../../../dtos/tag/update-tag.dto";
 
 const router = Router();
 
 router.get("/", getAllTagsController)
 router.get("/:uuid", getOneTagController)
 router.post("/", validate(CreateTagSchema), createTagController);
+router.patch("/:uuid", validate(UpdateTagSchema), updateTagController);
 
 export default router
