@@ -8,7 +8,8 @@ dotenv.config({
 const envSchema = z.object({
     PORT: z.coerce.number(),
     NODE_ENV: z.enum(["dev", "prod"]).default("dev"),
-    DATABASE_URL: z.coerce.string()
+    DATABASE_URL: z.coerce.string(),
+    REDIS_URL: z.coerce.string()
 })
 
 export const config = envSchema.parse(process.env)
