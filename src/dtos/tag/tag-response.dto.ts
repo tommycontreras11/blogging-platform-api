@@ -1,6 +1,6 @@
-export class TagResponse {
-    uuid!: string
-    name!: string
-    createdAt!: Date
-    updatedAt!: Date
+export type TagEntity = {
+    uuid: string
+    name: string
+    createdAt: Date
+    updatedAt: Date
 }

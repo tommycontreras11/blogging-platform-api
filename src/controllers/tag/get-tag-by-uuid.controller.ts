@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
 import { getTagByUuidService } from '../../services/tag/get-tag-by-uuid.service';
 import { StatusCode } from '../../helpers/status-code';
-import { TagResponse } from '../../dtos/tag/tag-response.dto';
+import { TagEntity } from '../../dtos/tag/tag-response.dto';
 
 export const getTagByUuidController = (req: Request, res: Response) => {
   const { uuid } = req.params as { uuid: string };
 
   getTagByUuidService(uuid)
-    .then((data: TagResponse) => {
-        const tag = {
+    .then((data: TagEntity) => {
+      const tag = {
             uuid: data.uuid,
-            name: data.name
+            name: data.name,
+            createdAt: data.createdAt,
+            updatedAt: data.updatedAt
         }
       return res.status(StatusCode.OK).json({ data: tag });
     })

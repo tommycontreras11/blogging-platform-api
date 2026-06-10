@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { updateTagService } from '../../services/tag/update-tag.service';
 import { StatusCode } from '../../helpers/status-code';
-import { TagResponse } from '../../dtos/tag/tag-response.dto';
+import { TagEntity } from '../../dtos/tag/tag-response.dto';
 
 export const updateTagController = (req: Request, res: Response) => {
   const { uuid } = req.params as { uuid: string };
 
   updateTagService(uuid, req.body)
-    .then((data: TagResponse) => {
+    .then((data: TagEntity) => {
       return res.status(StatusCode.OK).json({ data });
     })
     .catch((error) => {
