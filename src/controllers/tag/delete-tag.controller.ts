@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { deleteTagService } from "../../services/tag/delete.service";
+import { deleteTagService } from "../../services/tag/delete-tag.service";
 import { StatusCode } from "../../helpers/status-code";
 
 export const deleteTagController = (req: Request, res: Response) => {

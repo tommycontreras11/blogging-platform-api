@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { getOneTagService } from '../../services/tag/getOne.service';
+import { getTagByUuidService } from '../../services/tag/get-tag-by-uuid.service';
 import { StatusCode } from '../../helpers/status-code';
 import { TagResponse } from '../../dtos/tag/tag-response.dto';
 
-export const getOneTagController = (req: Request, res: Response) => {
+export const getTagByUuidController = (req: Request, res: Response) => {
   const { uuid } = req.params as { uuid: string };
 
-  getOneTagService(uuid)
+  getTagByUuidService(uuid)
     .then((data: TagResponse) => {
         const tag = {
             uuid: data.uuid,

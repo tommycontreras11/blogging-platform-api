@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllTagsService } from '../../services/tag/getAll.service';
+import { getAllTagsService } from '../../services/tag/get-all-tags.service';
 import { StatusCode } from '../../helpers/status-code';
 import { TagResponse } from '../../dtos/tag/tag-response.dto';
 

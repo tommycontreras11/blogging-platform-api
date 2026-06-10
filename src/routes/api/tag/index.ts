@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { 
     getAllTagsController, 
-    getOneTagController, 
+    getTagByUuidController, 
     createTagController, 
     updateTagController, 
     deleteTagController 
@@ -13,7 +13,7 @@ import { UpdateTagSchema } from "../../../dtos/tag/update-tag.dto";
 const router = Router();
 
 router.get("/", getAllTagsController)
-router.get("/:uuid", getOneTagController)
+router.get("/:uuid", getTagByUuidController)
 router.post("/", validate(CreateTagSchema), createTagController);
 router.patch("/:uuid", validate(UpdateTagSchema), updateTagController);
 router.delete("/:uuid", deleteTagController)

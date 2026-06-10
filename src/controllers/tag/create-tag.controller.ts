@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createTagService } from '../../services/tag/create.service';
+import { createTagService } from '../../services/tag/create-tag.service';
 import { StatusCode } from '../../helpers/status-code';
 
 export const createTagController = (req: Request, res: Response) => {

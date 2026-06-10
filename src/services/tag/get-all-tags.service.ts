@@ -1,13 +1,8 @@
-import { prisma } from '../../database';
 import { StatusCode } from '../../helpers/status-code';
+import { findAllTags } from '../../repositories/tag.repository';
 
 export const getAllTagsService = async () => {
-  const tags = await prisma.tag.findMany({
-    omit: {
-      id: true,
-      deletedAt: true,
-    },
-  });
+  const tags = await findAllTags()
 
   if (!tags.length)
     return Promise.reject({

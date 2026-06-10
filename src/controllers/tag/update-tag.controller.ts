@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { updateTagService } from '../../services/tag/update.service';
+import { updateTagService } from '../../services/tag/update-tag.service';
 import { StatusCode } from '../../helpers/status-code';
 import { TagResponse } from '../../dtos/tag/tag-response.dto';
 
