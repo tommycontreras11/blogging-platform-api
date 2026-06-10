@@ -17,6 +17,10 @@ export const updateTagService = async (
     data: {
       ...(name && { name }),
     },
+    omit: {
+      id: true,
+      deletedAt: true
+    }
   });
 
   return tag;

@@ -16,6 +16,10 @@ export const createTagService = async ({ name }: CreateTagDTO) => {
     data: {
       name,
     },
+    omit: {
+      id: true,
+      deletedAt: true
+    }
   });
 
   return createTag;
