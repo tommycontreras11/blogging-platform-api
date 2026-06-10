@@ -14,6 +14,7 @@ CREATE TABLE "Category" (
 CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
     "uuid" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
