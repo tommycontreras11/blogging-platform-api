@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { StatusCode } from '../../helpers/status-code';
-import { CategoryResponse } from '../../dtos/category/category-response.dto';
+import { CategoryEntity } from '../../dtos/category/category-response.dto';
 import { getAllCategoriesService } from '../../services/category/get-all-categories.service';
 
 export const getAllCategoriesController = async (_req: Request, res: Response) => {
   getAllCategoriesService()
-    .then((data: CategoryResponse[]) => {
+    .then((data: CategoryEntity[]) => {
       return res.status(StatusCode.OK).json({ data });
     })
     .catch((error) => {
