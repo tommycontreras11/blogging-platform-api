@@ -1,8 +1,8 @@
 import { StatusCode } from '../../helpers/status-code';
 import { findAllPosts } from '../../repositories/post.repository';
 
-export const getAllPostsService = async () => {
-  const categories = await findAllPosts()
+export const getAllPostsService = async (term: string | undefined) => {
+  const categories = await findAllPosts(term)
 
   if (!categories.length)
     return Promise.reject({

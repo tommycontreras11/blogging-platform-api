@@ -4,8 +4,10 @@ import { StatusCode } from '../../helpers/status-code';
 import { toPostResponse } from '../../mappers/post.mapper';
 import { getAllPostsService } from '../../services/post/get-all-posts.service';
 
-export const getAllPostsController = async (_req: Request, res: Response) => {
-  getAllPostsService()
+export const getAllPostsController = async (req: Request, res: Response) => {
+  const { term } = req.query as { term: string | undefined }
+
+  getAllPostsService(term)
     .then((data: PostEntity[]) => {
       return res.status(StatusCode.OK).json({ data: data.map(toPostResponse) });
     })

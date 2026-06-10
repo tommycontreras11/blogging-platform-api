@@ -2,7 +2,7 @@ import { prisma } from "../database";
 import { CreatePostData } from "../types/create-post-data.type";
 import { UpdatePostData } from "../types/update-post-data.type";
 
-export const findAllPosts = async () => {
+export const findAllPosts = async (term: string | undefined) => {
   return await prisma.post.findMany({
     omit: {
       id: true,
@@ -16,7 +16,30 @@ export const findAllPosts = async () => {
       tags: {
         select: { name: true }
       }
-    }
+    },
+    ...(term && {
+      where: {
+        OR: [
+          // FULL-TEXT SEARCH (Postgres)
+          {
+            title: {
+              search: term
+            }
+          },
+          {
+            content: { 
+              search: term
+            }
+          },
+          // RELATIONAL FIELDS (fallback)
+          {
+            category: {
+              name: { contains: term, mode: "insensitive" }
+            }
+          }
+        ]
+      }
+    })
   });
 }
 
