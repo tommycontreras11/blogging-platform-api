@@ -33,7 +33,7 @@ export const createTag = async (payload: CreateTagDTO) => {
   });
 }
 
-export const deleteTag = async (id: number) => {
+export const deleteTagById = async (id: number) => {
   return await prisma.tag.delete({
       where: { id }
   })
