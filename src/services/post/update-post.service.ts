@@ -1,3 +1,4 @@
+import { cache } from '../../cache/cache.service';
 import { UpdatePostDTO } from '../../dtos/posts/update-post.dto';
 import { updatePost } from '../../repositories/post.repository';
 import { getCategoryByUuidService } from '../category/get-category-by-uuid.service';
@@ -26,5 +27,6 @@ export const updatePostService = async (
     tagIds = tags.map((tag) => tag.id)
   }
 
-  return await updatePost(findPost.id, { ...payload, categoryId: category?.id, tagIds })
+  await cache.delete(`post:${findPost.uuid}`)
+  return await updatePost(findPost.id!, { ...payload, categoryId: category?.id, tagIds })
 };
