@@ -1,10 +1,10 @@
 import { CreateCategoryDTO } from '../../dtos/category/create-category.dto';
 import { StatusCode } from '../../helpers/status-code';
-import { prisma } from './../../database/index';
-import { getCategoryByName } from './getOne.service';
+import { prisma } from '../../database/index';
+import { findCategoryByName } from '../../repositories/category.repository';
 
 export const createCategoryService = async ({ name }: CreateCategoryDTO) => {
-  const category = await getCategoryByName(name);
+  const category = await findCategoryByName(name);
 
   if (category)
     return Promise.reject({

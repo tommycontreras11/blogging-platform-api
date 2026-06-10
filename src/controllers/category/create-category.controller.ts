@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createCategoryService } from '../../services/category/create.service';
+import { createCategoryService } from '../../services/category/create-category.service';
 import { StatusCode } from '../../helpers/status-code';
 
 export const createCategoryController = (req: Request, res: Response) => {

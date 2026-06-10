@@ -1,13 +1,8 @@
-import { prisma } from '../../database';
 import { StatusCode } from '../../helpers/status-code';
+import { findAllCategories } from '../../repositories/category.repository';
 
 export const getAllCategoriesService = async () => {
-  const categories = await prisma.category.findMany({
-    omit: {
-      id: true,
-      deletedAt: true,
-    },
-  });
+  const categories = await findAllCategories()
 
   if (!categories.length)
     return Promise.reject({

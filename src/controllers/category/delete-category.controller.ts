@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { deleteCategoryService } from "../../services/category/delete.service";
+import { deleteCategoryService } from "../../services/category/delete-category.service";
 import { StatusCode } from "../../helpers/status-code";
 
 export const deleteCategoryController = (req: Request, res: Response) => {

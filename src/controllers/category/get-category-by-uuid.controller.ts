@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { getOneCategoryService } from '../../services/category/getOne.service';
+import { getCategoryByUuidService } from '../../services/category/get-category-by-uuid.service';
 import { StatusCode } from '../../helpers/status-code';
 import { CategoryResponse } from '../../dtos/category/category-response.dto';
 
-export const getOneCategoryController = (req: Request, res: Response) => {
+export const getCategoryByUuidController = (req: Request, res: Response) => {
   const { uuid } = req.params as { uuid: string };
 
-  getOneCategoryService(uuid)
+  getCategoryByUuidService(uuid)
     .then((data: CategoryResponse) => {
         const category = {
             uuid: data.uuid,
