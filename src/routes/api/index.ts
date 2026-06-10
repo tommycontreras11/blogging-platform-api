@@ -1,8 +1,10 @@
 import { Router } from "express";
-import tagRoutes from "./tag/index"
+import categoryRouter from "./category"
+import tagRouter from "./tag"
 
 const router = Router()
 
-router.use("/tag", tagRoutes)
+router.use("/categories", categoryRouter)
+router.use("/tags", tagRouter)
 
 export default router
