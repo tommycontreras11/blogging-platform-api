@@ -1,14 +1,11 @@
 model Post {
-    id Int @id @default(autoincrement())
-    uuid String @default(cuid())
-    content String
-
-    categoryId Int
-    category Category @relation(fields: [categoryId], references: [id])
-
-    tags Tag[]
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    deletedAt DateTime?
+  id         Int       @id @default(autoincrement())
+  uuid       String    @default(cuid())
+  content    String
+  categoryId Int
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+  category   Category  @relation(fields: [categoryId], references: [id])
+  tags       Tag[]     @relation("PostToTag")
 }
