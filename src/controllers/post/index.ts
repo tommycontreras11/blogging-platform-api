@@ -1,0 +1,5 @@
+export * from "./get-all-posts.controller"
+export * from "./get-post-by-uuid.controller"
+export * from "./create-post.controller"
+export * from "./update-post.controller"
+export * from "./delete-post.controller"
