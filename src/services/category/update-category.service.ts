@@ -9,8 +9,9 @@ export const updateCategoryService = async (
 ) => {
   const findCategory = await getCategoryByIdService(id);
   
-  let existsCategory = await findCategoryByName(payload.name!)
-  if(existsCategory && existsCategory.id != id) return Promise.reject({ message: "Already exists a category with the name", status: StatusCode.CONFLICT })  
+  const existsCategory = await findCategoryByName(payload.name!)
+  if(existsCategory && existsCategory.id != id) 
+    return Promise.reject({ message: "Already exists a category with the name", status: StatusCode.CONFLICT })  
   
   return await updateCategory(findCategory.id, payload)
 };

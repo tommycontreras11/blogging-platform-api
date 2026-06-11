@@ -9,7 +9,7 @@ export const updateTagService = async (
 ) => {
   const findTag = await getTagByIdService(id);
   
-  let existsTag = await findTagByName(payload.name!)
+  const existsTag = await findTagByName(payload.name!)
   if(existsTag && existsTag.id != id) return Promise.reject({ message: "Already exists a tag with the name", status: StatusCode.CONFLICT })  
   
   return await updateTag(findTag.id, payload)

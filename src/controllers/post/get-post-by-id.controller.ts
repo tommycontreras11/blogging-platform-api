@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { PostEntity } from '../../dtos/posts/post-response.dto';
 import { StatusCode } from '../../helpers/status-code';
 import { getPostByIdService } from '../../services/post/get-post-by-id.service';
 

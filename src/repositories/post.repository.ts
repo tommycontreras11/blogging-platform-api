@@ -1,6 +1,5 @@
 import { prisma } from "../database";
-import { CreatePostData } from "../types/create-post-data.type";
-import { UpdatePostData } from "../types/update-post-data.type";
+import { CreateOrUpdatePostData } from "../types/create-or-update-post-data.type";
 
 export const findAllPosts = async (term: string | undefined) => {
   return await prisma.post.findMany({
@@ -52,7 +51,7 @@ export const findPostById = async (id: number) => {
   });
 };
 
-export const createPost = async (payload: CreatePostData) => {
+export const createPost = async (payload: CreateOrUpdatePostData) => {
   return await prisma.post.create({
     data: {
       title: payload.title,
@@ -82,18 +81,16 @@ export const deletePostById = async (id: number) => {
   })
 }
 
-export const updatePost = async (id: number, payload: UpdatePostData) => {
+export const updatePost = async (id: number, payload: CreateOrUpdatePostData) => {
   return await prisma.post.update({
     where: { id },
     data: {
-      ...(payload.title && { title: payload.title }),
-      ...(payload.content && { content: payload.content }),
-      ...(payload.categoryId && { categoryId: payload.categoryId }),
-      ...(payload.tagIds && payload.tagIds.length > 0 && {
-        tags: {
+      title: payload.title,
+      content: payload.content,
+      categoryId: payload.categoryId,
+      tags: {
           set: payload.tagIds.map((id: number) => ({ id })),
-        },
-      }),
+        }
     },
     omit: {
       categoryId: true,

@@ -1,5 +1,5 @@
 import { cache } from '../../cache/cache.service';
-import { UpdatePostDTO } from '../../dtos/posts/update-post.dto';
+import { CreateOrUpdatePostDTO } from '../../dtos/posts/create-or-update-post.dto';
 import { updatePost } from '../../repositories/post.repository';
 import { getCategoryByNameService } from '../category/get-category-by-name.service';
 import { getTagByNameService } from '../tag/get-tag-by-name.service';
@@ -7,26 +7,20 @@ import { getPostByIdService } from './get-post-by-id.service';
 
 export const updatePostService = async (
   id: number,
-  payload: UpdatePostDTO,
+  payload: CreateOrUpdatePostDTO,
 ) => {
   const findPost = await getPostByIdService(id);
 
-  let category = null
+  const category = await getCategoryByNameService(payload.category);
 
-  if(payload.category) {
-    category = await getCategoryByNameService(payload.category)
-  }
+  const tags = await Promise.all(payload.tags.map(getTagByNameService));
 
-  let tagIds: number[] | null = []
+  const tagIds = tags.map((tag) => tag.id);
 
-  if(payload.tags) {
-    const tags = await Promise.all(
-      payload.tags.map(getTagByNameService)
-    )
-
-    tagIds = tags.map((tag) => tag.id)
-  }
-
-  await cache.delete(`post:${findPost.id}`)
-  return await updatePost(findPost.id!, { ...payload, categoryId: category?.id, tagIds })
+  await cache.delete(`post:${findPost.id}`);
+  return await updatePost(findPost.id!, {
+    ...payload,
+    categoryId: category.id,
+    tagIds,
+  });
 };
