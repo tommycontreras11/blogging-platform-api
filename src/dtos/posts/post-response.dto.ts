@@ -1,6 +1,5 @@
 export type PostEntity = {
-    id?: number
-    uuid: string
+    id: number
     title: string;
     content: string;
     category: {
@@ -14,7 +13,7 @@ export type PostEntity = {
 }
 
 export type PostResponse = {
-    uuid: string
+    id: number
     title: string;
     content: string;
     category: string;

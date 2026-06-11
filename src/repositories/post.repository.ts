@@ -4,11 +4,6 @@ import { UpdatePostData } from "../types/update-post-data.type";
 
 export const findAllPosts = async (term: string | undefined) => {
   return await prisma.post.findMany({
-    omit: {
-      id: true,
-      categoryId: true,
-      deletedAt: true,
-    },
     include: {
       category: {
         select: { name: true }
@@ -43,9 +38,9 @@ export const findAllPosts = async (term: string | undefined) => {
   });
 }
 
-export const findPostByUuid = async (uuid: string) => {
+export const findPostById = async (id: number) => {
   return await prisma.post.findFirst({
-    where: { uuid },
+    where: { id },
     include: {
       category: {
         select: { name: true }
@@ -68,9 +63,7 @@ export const createPost = async (payload: CreatePostData) => {
       }
     },
     omit: {
-      id: true,
       categoryId: true,
-      deletedAt: true,
     },
     include: {
       category: {
@@ -103,9 +96,7 @@ export const updatePost = async (id: number, payload: UpdatePostData) => {
       }),
     },
     omit: {
-      id: true,
       categoryId: true,
-      deletedAt: true,
     },
     include: {
       category: {

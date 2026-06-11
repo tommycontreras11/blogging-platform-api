@@ -1,10 +1,10 @@
 import { cache } from "../../cache/cache.service";
 import { deletePostById } from "../../repositories/post.repository";
-import { getPostByUuidService } from "./get-post-by-uuid.service";
+import { getPostByIdService } from "./get-post-by-id.service";
 
-export const deletePostService = async (uuid: string) => {
-    const post = await getPostByUuidService(uuid);
+export const deletePostService = async (id: number) => {
+    const post = await getPostByIdService(id);
 
     await deletePostById(post.id!)
-    await cache.delete(`post:${post.uuid}`)
+    await cache.delete(`post:${post.id}`)
 }

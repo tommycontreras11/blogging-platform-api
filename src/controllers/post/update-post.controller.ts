@@ -5,9 +5,9 @@ import { PostEntity } from '../../dtos/posts/post-response.dto';
 import { toPostResponse } from '../../mappers/post.mapper';
 
 export const updatePostController = (req: Request, res: Response) => {
-  const { uuid } = req.params as { uuid: string };
+  const { id } = req.params as { id: string };
 
-  updatePostService(uuid, req.body)
+  updatePostService(+id, req.body)
     .then((data: PostEntity) => {
       return res.status(StatusCode.OK).json({ data: toPostResponse(data) });
     })
