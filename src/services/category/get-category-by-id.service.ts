@@ -1,8 +1,8 @@
 import { StatusCode } from "../../helpers/status-code";
-import { findCategoryByUuid } from "../../repositories/category.repository";
+import { findCategoryById } from "../../repositories/category.repository";
 
-export const getCategoryByUuidService = async (uuid: string) => {
-  const category = await findCategoryByUuid(uuid)
+export const getCategoryByIdService = async (id: number) => {
+  const category = await findCategoryById(id)
 
   if (!category)
     return Promise.reject({

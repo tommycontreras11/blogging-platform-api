@@ -3,21 +3,16 @@ import { CreateCategoryDTO } from "../dtos/category/create-category.dto";
 import { UpdateCategoryDTO } from "../dtos/category/update-category.dto";
 
 export const findAllCategories = async () => {
-  return await prisma.category.findMany({
-    omit: {
-      id: true,
-      deletedAt: true,
-    },
-  });
+  return await prisma.category.findMany();
 }
 
 export const findCategoryByName = async (name: string) => {
   return await prisma.category.findUnique({ where: { name } })
 }
 
-export const findCategoryByUuid = async (uuid: string) => {
+export const findCategoryById = async (id: number) => {
   return await prisma.category.findFirst({
-    where: { uuid }
+    where: { id }
   });
 };
 
@@ -25,10 +20,6 @@ export const createCategory = async (payload: CreateCategoryDTO) => {
   return await prisma.category.create({
       data: {
         name: payload.name
-      },
-      omit: {
-        id: true,
-        deletedAt: true
       }
   });
 }
@@ -44,10 +35,6 @@ export const updateCategory = async (id: number, payload: UpdateCategoryDTO) => 
     where: { id },
     data: {
       ...(payload.name && { name: payload.name }),
-    },
-    omit: {
-      id: true,
-      deletedAt: true
     }
   });
 }

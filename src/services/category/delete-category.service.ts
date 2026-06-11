@@ -1,8 +1,8 @@
 import { deleteCategoryById } from "../../repositories/category.repository";
-import { getCategoryByUuidService } from "./get-category-by-uuid.service";
+import { getCategoryByIdService } from "./get-category-by-id.service";
 
-export const deleteCategoryService = async (uuid: string) => {
-    const category = await getCategoryByUuidService(uuid);
+export const deleteCategoryService = async (id: number) => {
+    const category = await getCategoryByIdService(id);
 
     await deleteCategoryById(category.id)
 }

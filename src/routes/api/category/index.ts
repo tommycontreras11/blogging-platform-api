@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { 
     getAllCategoriesController, 
-    getCategoryByUuidController, 
+    getCategoryByIdController, 
     createCategoryController, 
     updateCategoryController, 
     deleteCategoryController 
@@ -13,9 +13,9 @@ import { UpdateCategorySchema } from "../../../dtos/category/update-category.dto
 const router = Router();
 
 router.get("/", getAllCategoriesController)
-router.get("/:uuid", getCategoryByUuidController)
+router.get("/:id", getCategoryByIdController)
 router.post("/", validate(CreateCategorySchema), createCategoryController);
-router.patch("/:uuid", validate(UpdateCategorySchema), updateCategoryController);
-router.delete("/:uuid", deleteCategoryController)
+router.patch("/:id", validate(UpdateCategorySchema), updateCategoryController);
+router.delete("/:id", deleteCategoryController)
 
 export default router

@@ -1,5 +1,5 @@
 export * from "./get-all-categories.controller"
-export * from "./get-category-by-uuid.controller"
+export * from "./get-category-by-id.controller"
 export * from "./create-category.controller"
 export * from "./update-category.controller"
 export * from "./delete-category.controller"
