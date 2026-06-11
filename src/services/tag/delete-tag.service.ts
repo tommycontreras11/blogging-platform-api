@@ -1,8 +1,8 @@
 import { deleteTagById } from "../../repositories/tag.repository";
-import { getTagByUuidService } from "./get-tag-by-uuid.service";
+import { getTagByIdService } from "./get-tag-by-id.service";
 
-export const deleteTagService = async (uuid: string) => {
-    const findTag = await getTagByUuidService(uuid);
+export const deleteTagService = async (id: number) => {
+    const findTag = await getTagByIdService(id);
 
     await deleteTagById(findTag.id)
 }

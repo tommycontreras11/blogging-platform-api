@@ -1,5 +1,5 @@
 export * from "./get-all-tags.controller"
-export * from "./get-tag-by-uuid.controller"
+export * from "./get-tag-by-id.controller"
 export * from "./create-tag.controller"
 export * from "./update-tag.controller"
 export * from "./delete-tag.controller"

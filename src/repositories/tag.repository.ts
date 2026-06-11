@@ -3,21 +3,16 @@ import { CreateTagDTO } from "../dtos/tag/create-tag.dto";
 import { UpdateTagDTO } from "../dtos/tag/update-tag.dto";
 
 export const findAllTags = async () => {
-  return await prisma.tag.findMany({
-    omit: {
-      id: true,
-      deletedAt: true,
-    },
-  });
+  return await prisma.tag.findMany();
 }
 
 export const findTagByName = async (name: string) => {
   return await prisma.tag.findUnique({ where: { name } })
 }
 
-export const findTagByUuid = async (uuid: string) => {
+export const findTagById = async (id: number) => {
   return await prisma.tag.findFirst({
-    where: { uuid }
+    where: { id }
   });
 };
 
@@ -25,10 +20,6 @@ export const createTag = async (payload: CreateTagDTO) => {
   return await prisma.tag.create({
       data: {
         name: payload.name
-      },
-      omit: {
-        id: true,
-        deletedAt: true
       }
   });
 }
@@ -44,10 +35,6 @@ export const updateTag = async (id: number, payload: UpdateTagDTO) => {
     where: { id },
     data: {
       ...(payload.name && { name: payload.name }),
-    },
-    omit: {
-      id: true,
-      deletedAt: true
     }
   });
 }

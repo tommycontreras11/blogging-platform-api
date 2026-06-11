@@ -13,9 +13,9 @@ import { UpdateTagSchema } from "../../../dtos/tag/update-tag.dto";
 const router = Router();
 
 router.get("/", getAllTagsController)
-router.get("/:uuid", getTagByUuidController)
+router.get("/:id", getTagByUuidController)
 router.post("/", validate(CreateTagSchema), createTagController);
-router.patch("/:uuid", validate(UpdateTagSchema), updateTagController);
-router.delete("/:uuid", deleteTagController)
+router.patch("/:id", validate(UpdateTagSchema), updateTagController);
+router.delete("/:id", deleteTagController)
 
 export default router
