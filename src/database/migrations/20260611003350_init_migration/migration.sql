@@ -1,11 +1,9 @@
 -- CreateTable
 CREATE TABLE "Category" (
     "id" SERIAL NOT NULL,
-    "uuid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -13,13 +11,11 @@ CREATE TABLE "Category" (
 -- CreateTable
 CREATE TABLE "Post" (
     "id" SERIAL NOT NULL,
-    "uuid" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
@@ -27,11 +23,9 @@ CREATE TABLE "Post" (
 -- CreateTable
 CREATE TABLE "Tag" (
     "id" SERIAL NOT NULL,
-    "uuid" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
 );
